@@ -1,4 +1,4 @@
-import {linkedin, resume  } from "../assets";
+import {linkedin, resume, conveyorBelt, coursemanager  } from "../assets";
 
 export const navLinks = [
   {
@@ -81,6 +81,32 @@ export const skills = [
   },
 ];*/
 
+export const projects = [
+  {
+    id: "skill-1",
+    image: conveyorBelt,
+    title: "Conveyor Belt Automatization with Robotic arm",
+    content: "Simulation of Robotic Arm  (RB12) in Coppelia Sim, interfaced with Matlab. Calculated the degrees of freedom for the robotic arm and programmed the behavior of the robot and conveyor belt to react to the signal from a proximity sensor.",
+    skillsUsed:[
+      "Matlab",
+      "Coppelia",
+      "Calculus",
+    ],
+  },
+  {
+    id: "skill-2",
+    image: coursemanager,
+    title: "Course Manager Web App",
+    content: "Class Management System with three diferent versions of the website for teachers, TAs and Students. This app includes it's own mail client, chat, assingment creation and file management.",
+    skillsUsed:[
+      "PHP",
+      "HTML",
+      "CSS",
+      "MySQL",
+      "Javascript",
+    ],
+  },
+];
 
 export const stats = [
   {

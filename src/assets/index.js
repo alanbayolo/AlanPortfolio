@@ -9,6 +9,7 @@ import A from "./spinningA.gif";
 import peace from "./peace.svg";
 import conveyorBelt from "./Projects/conveyorBelt.png";
 import github from "./github.svg";
+import coursemanager from "./Projects/coursemanager.png"
 
 export {
   logo,
@@ -22,4 +23,5 @@ export {
   peace,
   conveyorBelt,
   github,
+  coursemanager,
 };

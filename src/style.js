@@ -23,6 +23,34 @@ const styles = {
   
     marginX: "sm:mx-16 mx-6",
     marginY: "sm:my-16 my-6",
+
+    /*Styles for Cards */
+    /*cardLayout: "relative z-[4] h-auto min-h-[320px] w-[85%] my-3",
+    cardSection: "w-[75%] h-full border border-[#282D33] rounded-[1.3rem] bg-[#171717]",
+    cardContent: "w-[56%] m-4 inset-y-0 left-0 ",
+    cardSkills: "skillList pt-4 inline-flex gap-2",
+    cardImage: "z-[5] my-3 w-[53%] absolute inset-y-0 right-0 flex items-center",*/
+
+    cardSkills: "skillList pt-4 md:inline-flex gap-2 grid grid-cols-3 md:grid-cols-none",
+
+    cardLayout: "relative z-[4] w-[90%] md:w-[85%] md:h-auto md:h-auto min-h-[320px] my-3 place-self-center md:place-self-start",
+    cardSection: "h-[437px] md:h-full md:w-[75%] border border-[#282D33] rounded-[1.3rem] bg-[#171717]",
+    cardContent: "md:w-[56%] m-4 inset-y-0 left-0 text-center md:text-left",
+    cardImage: "z-[0] md:z-[5] md:my-3 mx-3 md:mx-0 md:w-[53%] md:absolute md:inset-y-0 md:right-0 md:flex md:items-center h-[36%] md:h-auto ",
+
+    reversedCardLayout: "relative z-[4] w-[90%] md:w-[85%] md:h-auto md:h-auto min-h-[320px] my-3 place-self-center md:place-self-end md:flex md:flex-row-reverse",
+    reversedCardSection: "h-[437px] md:h-full md:w-[75%] border border-[#282D33] rounded-[1.3rem] bg-[#171717] md:flex md:flex-row-reverse",
+    reversedCardContent: "md:w-[56%] m-4 inset-y-0 left-0 text-center md:text-right",
+    reversedCardImage: "z-[0] md:z-[5] md:my-3 mx-3 md:mx-0 md:w-[53%] md:absolute md:inset-y-0 md:left-0 md:flex md:items-center h-[36%] md:h-auto ",
+
+
+
+    /*mobileCardLayout: "relative z-[4] w-[90%] my-3 place-self-center",
+    mobileCardSection: "h-[437px] border border-[#282D33] rounded-[1.3rem] bg-[#171717]",
+    mobileCardContent: "m-4 inset-y-0 left-0 text-center",
+    mobileCardSkills: "skillList pt-4 inline-flex gap-2",
+    mobileCardImage: "z-[0] mx-3 h-[36%] ",*/
+
   };
   
   export const layout = {
