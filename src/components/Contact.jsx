@@ -4,7 +4,7 @@ import SayHi from "./SayHi";
 
 const Contact = () => {
   return (
-    <section id="projects" className={`${layout.section} relative`}>
+    <section id="contact" className={`${layout.section} relative`}>
         <div className={layout.sectionInfo}>
           <h2 className={styles.headingContact}>Get In Touch ✉️</h2>
           <div className="flex flex-col place-self-center gap-7 mt-7">

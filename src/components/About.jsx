@@ -5,7 +5,7 @@ import { profilePic, peace } from "../assets";
 
 const About = () => {
   return (
-    <section id="features" className={layout.section}>
+    <section id="about" className={layout.section}>
       <div className={`${layout.sectionInfo}`}>
         <h2 className={styles.heading2}>Nice to meet you!</h2>
 
