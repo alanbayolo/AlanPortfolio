@@ -1,6 +1,6 @@
 import styles from "./style";
 
-import {Navbar,Billing,CardDeal,Business,Clients,CTA,Stats,Footer,Testimonials,Hero} from "./components";
+import {Navbar,About,Footer,Hero,Projects,Contact} from "./components";
 
 const App = () => (
   <div className="bg-black w-full overflow-hidden">
@@ -10,24 +10,21 @@ const App = () => (
       </div>
     </div>
 
-    <div className={`bg-black ${styles.flexStart}`}>
+
+    <div className={`bg-black px-4 ${styles.flexStart}`}>
       <div className={`${styles.boxWidth}`}>
         <Hero />
       </div>
     </div>
 
-    <div className={`bg-black ${styles.paddingX} ${styles.flexStart}`}>
+    <div className={`bg-black ${styles.paddingXm} ${styles.flexStart}`}>
       <div className={`${styles.boxWidth}`}>
-        <Stats />
-        <Business />
-        <Billing />
-        <CardDeal />
-        <Testimonials />
-        <Clients />
-        <CTA />
-        <Footer />
+        <About />
+        <Projects />
+        <Contact />
       </div>
     </div>
+    <Footer />
   </div>
 );
 

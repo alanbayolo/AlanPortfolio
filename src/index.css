@@ -17,6 +17,36 @@
 * {
   scroll-behavior: smooth;
 }
+/*scrollbar start*/
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: black;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(254, 254, 254, 0.229);
+  border-radius: 14px;
+  border: 2px solid rgb(0, 0, 0);
+}
+/*scrollbar end*/
+
+ul {
+  list-style: '⭐ ';
+}
+
+li::marker {
+  font-size: 14px;
+}
+
+.skillList{
+  list-style: none;
+  font-size: 16;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
 
 .text-gradient {
   background: radial-gradient(
@@ -78,6 +108,15 @@
     #ffffff -278.56%,
     #6d6d6d -78.47%,
     #11101d 91.61%
+  );
+}
+
+.bg-black-gradient-3 {
+  background: linear-gradient(
+    -168.39deg,
+    #d3d2d2 -278.56%,
+    #6d6d6d -78.47%,
+    #0b0b0b 91.61%
   );
 }
 
@@ -151,6 +190,11 @@
   filter: blur(900px);
 }
 
+.green__gradient {
+  background: linear-gradient(90deg, #D9F4C4 0%, #A0FC67 100%);
+  filter: blur(900px);
+}
+
 .white__gradient {
   background: rgba(255, 255, 255, 0.6);
   filter: blur(750px);
@@ -159,4 +203,54 @@
 .white__gradient2 {
   background: rgba(255, 255, 255, 0.8);
   filter: blur(800px);
+}
+
+.white__gradient3 {
+  background: rgba(255, 255, 255, 0.6);
+  filter: blur(250px);
+}
+
+.bleu__gradient {
+  background: linear-gradient(90deg, #c4f0f4 0%, #67b6fc 100%);
+  filter: blur(900px);
+}
+
+.slime__gradient {
+  background: linear-gradient(0deg, #37ad41,#93F252,#93F252);
+}
+
+.slime__gradient {
+  background: linear-gradient(0deg, #37ad41,#93F252,#93F252);
+}
+
+.slime2tone {
+  background: linear-gradient(90deg, #35e205,#CCFB54);
+}
+
+.slime2toneInverse {
+  background: linear-gradient(90deg, #CCFB54, #35e205);
+}
+
+.slime__gradient__2tone {
+  background: linear-gradient(90deg, #35e205,#CCFB54);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.slime-text-gradient {
+  background: linear-gradient(90deg, #01930d,#9ef801,#73b02e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.leftShadow {
+  box-shadow: -20px 0 20px -5px #000000;
+}
+
+.rightShadow {
+  box-shadow: 20px 0 20px -5px #000000;
 }
