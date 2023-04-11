@@ -1,5 +1,11 @@
 import {linkedin, resume, conveyorBelt, coursemanager  } from "../assets";
 
+export const languages = [
+  {label: "🇬🇧ENG", code: "EN"},
+  {label: "🇫🇷FRA", code: "FR"},
+  {label: "🇲🇽ESP", code: "ES"},
+]
+
 export const navLinks = [
   {
     id: "about",
@@ -57,30 +63,6 @@ export const skills = [
     title: "MySQL",
   },
 ];
-/*export const features = [
-  {
-    id: "feature-1",
-    icon: binary,
-    title: "Computer Science Projects",
-    content:
-      "From a Web Course Management System to a Dictionary creator, to this very website.",
-  },
-  {
-    id: "feature-2",
-    icon: gear,
-    title: "Engineering Projects",
-    content:
-      "You like robots? Who doesn’t? Embedded systems, tesla coils and even a minigame.",
-  },
-  {
-    id: "feature-3",
-    icon: brush,
-    title: "Other Projects",
-    content:
-      "Graphic Design, 3D modeling, and traditional art.",
-  },
-];*/
-
 export const projects = [
   {
     id: "skill-1",
@@ -106,98 +88,4 @@ export const projects = [
       "Javascript",
     ],
   },
-];
-
-export const stats = [
-  {
-    id: "stats-1",
-    title: "User Active",
-    value: "3800+",
-  },
-  {
-    id: "stats-2",
-    title: "Trusted by Company",
-    value: "230+",
-  },
-  {
-    id: "stats-3",
-    title: "Transaction",
-    value: "$230M+",
-  },
-];
-
-export const footerLinks = [
-  {
-    title: "Useful Links",
-    links: [
-      {
-        name: "Content",
-        link: "https://www.hoobank.com/content/",
-      },
-      {
-        name: "How it Works",
-        link: "https://www.hoobank.com/how-it-works/",
-      },
-      {
-        name: "Create",
-        link: "https://www.hoobank.com/create/",
-      },
-      {
-        name: "Explore",
-        link: "https://www.hoobank.com/explore/",
-      },
-      {
-        name: "Terms & Services",
-        link: "https://www.hoobank.com/terms-and-services/",
-      },
-    ],
-  },
-  {
-    title: "Community",
-    links: [
-      {
-        name: "Help Center",
-        link: "https://www.hoobank.com/help-center/",
-      },
-      {
-        name: "Partners",
-        link: "https://www.hoobank.com/partners/",
-      },
-      {
-        name: "Suggestions",
-        link: "https://www.hoobank.com/suggestions/",
-      },
-      {
-        name: "Blog",
-        link: "https://www.hoobank.com/blog/",
-      },
-      {
-        name: "Newsletters",
-        link: "https://www.hoobank.com/newsletters/",
-      },
-    ],
-  },
-  {
-    title: "Partner",
-    links: [
-      {
-        name: "Our Partner",
-        link: "https://www.hoobank.com/our-partner/",
-      },
-      {
-        name: "Become a Partner",
-        link: "https://www.hoobank.com/become-a-partner/",
-      },
-    ],
-  },
-];
-
-
-export const greetings = [
-  "Hi!",
-  "Salut!",
-  "Hola!",
-  "Hello!",
-  "Allô!",
-  "Saludos!",
 ];

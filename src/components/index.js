@@ -7,6 +7,7 @@ import Hero from "./Hero";
 import Projects from "./Projects";
 import Contact from "./Contact";
 import SeeMore from "./SeeMore";
+import ProjectsClone from "./ProjectsClone";
 
 export {
   Navbar,
@@ -16,4 +17,5 @@ export {
   Projects,
   Contact,
   SeeMore,
+  ProjectsClone,
 };
