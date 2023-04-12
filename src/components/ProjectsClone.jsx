@@ -1,10 +1,11 @@
 //import React from 'react'
 import styles, {layout} from "../style";
 import { projects } from "../constants";
-import { useRef, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
+import {urlFor, client} from '../client';
 
 {/*const ProjectCard = ({ img, title, content, index, skillTags}) => (*/}
-const ProjectCard = ({ image, title, content, index, skillsUsed}) => {
+const ProjectCard = ({ image, title, content, index, skills}) => {
     const targetRef = useRef(null);
     useEffect(() => {
       const updateMousePosition = ev => {
@@ -35,22 +36,22 @@ const ProjectCard = ({ image, title, content, index, skillsUsed}) => {
               {content}
               </p>
               <ul className={styles.cardSkills}>
-                {skillsUsed.map((skill) => (
+                {skills.map((skill) => (
                   <li key={skill} className={styles.skillItem}>{skill}</li>
                 ))}
               </ul>
             </div>
             <div className={styles.cardImage}>
-              <img className="md:invisible rounded-[20px] w-full" src={image} />
+              <img className="md:invisible rounded-[20px] w-full" src={urlFor(image)} />
             </div>
           </div>
           <div className={styles.cardImage}>
-              <img className="invisible md:visible h-[50%] md:h-full rounded-[20px] leftShadow" src={image} />
+              <img className="invisible md:visible h-[50%] md:h-full rounded-[20px] leftShadow" src={urlFor(image)} />
           </div>
         </div>
 )};
 
-const ProjectCardReversed = ({ image, title, content, index, skillsUsed}) => {
+const ProjectCardReversed = ({ image, title, content, index, skills}) => {
   const targetRef = useRef(null);
     useEffect(() => {
       const updateMousePosition = ev => {
@@ -81,33 +82,60 @@ const ProjectCardReversed = ({ image, title, content, index, skillsUsed}) => {
         {content}
         </p>
         <ul className={styles.cardSkills}>
-          {skillsUsed.map((skill) => (
+          {skills.map((skill) => (
             <li key={skill} className={styles.skillItem}>{skill}</li>
           ))}
         </ul>
       </div>
       <div className={styles.cardImage}>
-        <img className="md:invisible rounded-[20px] w-full" src={image}/>
+        <img className="md:invisible rounded-[20px] w-full" src={urlFor(image)}/>
       </div>
     </div>
     <div className={styles.reversedCardImage}>
-        <img className="invisible md:visible h-[50%] md:h-full rounded-[20px] rightShadow" src={image}/>
+        <img className="invisible md:visible h-[50%] md:h-full rounded-[20px] rightShadow" src={urlFor(image)}/>
     </div>
   </div>
 )};
 
-const ProjectsClone = () => {
-    
+const ProjectsClone = ({selectedLanguage}) => {
+  const made = {"en": "Some projects I've built",
+                "fr": "Quelques projets que j'ai fait",
+              "es": "Algunos projectos que he realizado"};
+  const [sectionTitle, setSectionTitle] = useState([]);
+  const [projectObjects, setProjectObjects] = useState([]);
+  const [query, setQuery] = useState('*[_type == "projects"] | order(id asc) {'
+  +'"title":title.'+selectedLanguage+','
+  +'"content":content.'+selectedLanguage+','
+  +'skills,id,image,'
+  +'}');
+  useEffect(() => {
+    setSectionTitle(made[selectedLanguage]);
+    setQuery('*[_type == "projects"] | order(id asc) {'
+    +'"title":title.'+selectedLanguage+','
+    +'"content":content.'+selectedLanguage+','
+    +'skills,id,image,'
+    +'}');
+    let mounted = true;
+    client.fetch(query)
+    .then((data) => {
+      if(mounted) {
+        setProjectObjects(data);
+      }
+    }
+    )
+    return () => mounted = false;
+  },[selectedLanguage, query]);
+  console.log(projectObjects[0]);
     return (
         <section id="projects" className={layout.section}>
             <div className={layout.sectionInfo}>
-              <h2 className={styles.heading2alt}>Some projects I've worked on</h2>
+              <h2 className={styles.heading2alt}>{sectionTitle}</h2>
               <div className="flex md:flex-row flex-col">
                   <div></div>
               </div>
               <div className="absolute z-[3] -left-1/3 w-[25%] h-[40%] rounded-full white__gradient" />
               <div className="absolute z-[0] w-[40%] h-[40%] -left-1/2 rounded-full green__gradient" />
-              {projects.map((project, index) => {
+              {projectObjects.map((project, index) => {
             return (index+1)%2 !=0 ?
               <ProjectCard key={project.id} {...project} index={index}/>
               :

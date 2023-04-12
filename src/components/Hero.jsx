@@ -23,7 +23,7 @@ const Hero = ({selectedLanguage}) => {
     client.fetch(query)
     .then((data) => {
       if(mounted) {
-      setHeroContent(data)
+      setHeroContent(data[0])
       }
     }
     )
@@ -43,7 +43,6 @@ const Hero = ({selectedLanguage}) => {
   /*console.log(heroContent);*/
   return(
     <section id="home" className={`flex md:flex-row flex-col ${styles.paddingY}`}>
-      {heroContent.map((content, index) => (
       <div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
         {/*<div className="flex flex-row items-center py-[6px] px-4 bg-discount-gradient rounded-[10px] mb-2">
           <img src={discount} alt="discount" className="w-[32px] h-[32px]"/>
@@ -54,20 +53,19 @@ const Hero = ({selectedLanguage}) => {
         </div>*/}
         <div className="flex flex-row justify-between items-center w-full">
           <h1 className="flex-1 font-poppins font-semibold ss:text-[72px] text-[52px] text-white ss:leading-tight leading-none">
-            {/*newName*/} {content.hello}<br className="sm:block hidden"/> {" "}
-            <span className="slime-text-gradient">{content.who}</span> {" "}
+            {/*newName*/} {heroContent.hello}<br className="sm:block hidden"/> {" "}
+            <span className="slime-text-gradient">{heroContent.who}</span> {" "}
           </h1>
           {/*<div className="ss:flex hidden md:mr-4 mr-0">
             <GetStarted />
       </div>*/}
         </div>
 
-        <h1 className="font-poppins font-semibold ss:text-[68px] text-[52px] text-white ss:leading-[100px] leading-[75px] w-full">{content.what}</h1>
-        <p className={`${styles.paragraph} max-w-[470px] mt-5`}>{content.where}</p>
+        <h1 className="font-poppins font-semibold ss:text-[68px] text-[52px] text-white ss:leading-[100px] leading-[75px] w-full">{heroContent.what}</h1>
+        <p className={`${styles.paragraph} max-w-[470px] mt-5`}>{heroContent.where}</p>
         <div className="absolute z-[0] w-[37%] h-[30%] -left-1/4  rounded-full white__gradient2"></div>
 
       </div>
-      ))}
       <div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
         {/*<img src={A} alt="logo" draggable="false" className="w-[65%] relative h relative z-[5]" /> older code*/}
         <img src={A} alt="logo" draggable="false" className="w-[45%] relative h relative z-[5]" />

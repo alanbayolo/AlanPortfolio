@@ -26,7 +26,7 @@ const App = () => {
       <div className={`${styles.boxWidth}`}>
         <About selectedLanguage={selectedLanguage} />
         {/*<Projects />*/}
-        <ProjectsClone />
+        <ProjectsClone selectedLanguage={selectedLanguage}/>
         <Contact selectedLanguage={selectedLanguage}/>
       </div>
     </div>
