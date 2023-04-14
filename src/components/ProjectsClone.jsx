@@ -12,14 +12,14 @@ const DocumentWithImage = ({}) => {
 
 const VideoPlayer = ({size, source}) => {
   return(size == 'mobile' ? 
-  <MuxPlayer className="md:hidden rounded-[20px] w-full" playbackId={source} /> :
-  <MuxPlayer className="hidden md:hidden h-[50%] md:h-full rounded-[20px] leftShadow" playbackId={source} />);
+  <MuxPlayer className="md:invisible rounded-[20px] w-full" playbackId={source} /> :
+  <MuxPlayer className="invisible md:visible rounded-[20px] leftShadow" playbackId={source} />);
 }
 
 const ImageElement = ({size, source}) => {
   return(size == 'mobile' ? 
-  <img className="md:hidden rounded-[20px] w-full" src={urlFor(source)} /> :
-  <img className="hidden md:hidden h-[50%] md:h-full rounded-[20px] leftShadow" src={urlFor(source)} />);
+  <img className="md:invisible rounded-[20px] w-full" src={urlFor(source)} /> :
+  <img className="invisible md:visible rounded-[20px] leftShadow" src={urlFor(source)} />);
 }
 
 const Media = ({type, image, playbackId, size}) => {
