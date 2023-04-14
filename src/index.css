@@ -292,3 +292,7 @@ li::marker {
   filter: blur(900px);
   background: inherit;
 }
+
+MuxPlayer{
+  border-radius: 20px;
+}

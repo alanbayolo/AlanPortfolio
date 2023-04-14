@@ -3,9 +3,41 @@ import styles, {layout} from "../style";
 import { projects } from "../constants";
 import { useRef, useState, useEffect } from "react";
 import {urlFor, client} from '../client';
+import MuxPlayer from '@mux/mux-player-react'
+import {suspend} from 'suspend-react'
+
+const DocumentWithImage = ({}) => {
+  return(0);
+}
+
+const VideoPlayer = ({size, source}) => {
+  return(size == 'mobile' ? 
+  <MuxPlayer className="md:invisible rounded-[20px] w-full" playbackId={source} /> :
+  <MuxPlayer className="invisible md:visible h-[50%] md:h-full rounded-[20px] leftShadow" playbackId={source} />);
+}
+
+const ImageElement = ({size, source}) => {
+  return(size == 'mobile' ? 
+  <img className="md:invisible rounded-[20px] w-full" src={urlFor(source)} /> :
+  <img className="invisible md:visible h-[50%] md:h-full rounded-[20px] leftShadow" src={urlFor(source)} />);
+}
+
+const Media = ({type, image, playbackId, size}) => {
+  console.log(type);
+  switch(type){
+    case 'image':
+      return(<ImageElement size={size} source={image} />);
+    case 'video':
+      return(<VideoPlayer size={size} source={playbackId} />);
+    case 'document':
+      return(0);
+    default:
+      return(0); 
+  }
+}
 
 {/*const ProjectCard = ({ img, title, content, index, skillTags}) => (*/}
-const ProjectCard = ({ image, title, content, index, skills}) => {
+const ProjectCard = ({ image, title, content, type, playbackId, skills}) => {
     const targetRef = useRef(null);
     useEffect(() => {
       const updateMousePosition = ev => {
@@ -25,6 +57,7 @@ const ProjectCard = ({ image, title, content, index, skills}) => {
         window.removeEventListener('mousemove', updateMousePosition);
       };
     }, []);
+    let object = {type, playbackId, image};
     return(
         <div className={styles.cardLayout}>
           <div ref={targetRef} className={`${styles.cardSectionmod} gradientmoving`}>
@@ -42,16 +75,18 @@ const ProjectCard = ({ image, title, content, index, skills}) => {
               </ul>
             </div>
             <div className={styles.cardImage}>
-              <img className="md:invisible rounded-[20px] w-full" src={urlFor(image)} />
+              <Media {...object} size={'mobile'} />
+              {/*<img className="md:invisible rounded-[20px] w-full" src={urlFor(image)} />*/}
             </div>
           </div>
           <div className={styles.cardImage}>
-              <img className="invisible md:visible h-[50%] md:h-full rounded-[20px] leftShadow" src={urlFor(image)} />
+              <Media {...object} size={'full'}/>
+              {/*<img className="invisible md:visible h-[50%] md:h-full rounded-[20px] leftShadow" src={urlFor(image)} />*/}
           </div>
         </div>
 )};
 
-const ProjectCardReversed = ({ image, title, content, index, skills}) => {
+const ProjectCardReversed = ({ image, title, content, type, playbackId, skills}) => {
   const targetRef = useRef(null);
     useEffect(() => {
       const updateMousePosition = ev => {
@@ -71,6 +106,7 @@ const ProjectCardReversed = ({ image, title, content, index, skills}) => {
         window.removeEventListener('mousemove', updateMousePosition);
       };
     }, []);
+    let object = {type, playbackId, image};
     return(
   <div className={styles.reversedCardLayout}>
     <div ref={targetRef} className={`${styles.reversedCardSectionmod} gradientmoving`}>
@@ -88,11 +124,13 @@ const ProjectCardReversed = ({ image, title, content, index, skills}) => {
         </ul>
       </div>
       <div className={styles.cardImage}>
-        <img className="md:invisible rounded-[20px] w-full" src={urlFor(image)}/>
+        <Media {...object} size={'mobile'}/>
+        {/*<img className="md:invisible rounded-[20px] w-full" src={urlFor(image)}/>*/}
       </div>
     </div>
     <div className={styles.reversedCardImage}>
-        <img className="invisible md:visible h-[50%] md:h-full rounded-[20px] rightShadow" src={urlFor(image)}/>
+        <Media {...object} size={'full'}/>
+        {/*<img className="invisible md:visible h-[50%] md:h-full rounded-[20px] rightShadow" src={urlFor(image)}/>*/}
     </div>
   </div>
 )};
@@ -106,14 +144,14 @@ const ProjectsClone = ({selectedLanguage}) => {
   const [query, setQuery] = useState('*[_type == "projects"] | order(id asc) {'
   +'"title":title.'+selectedLanguage+','
   +'"content":content.'+selectedLanguage+','
-  +'skills,id,image,'
+  +'skills,id,image,type,"playbackId": video.asset->playbackId'
   +'}');
   useEffect(() => {
     setSectionTitle(made[selectedLanguage]);
     setQuery('*[_type == "projects"] | order(id asc) {'
     +'"title":title.'+selectedLanguage+','
     +'"content":content.'+selectedLanguage+','
-    +'skills,id,image,'
+    +'skills,id,image,type,"playbackId": video.asset->playbackId'
     +'}');
     let mounted = true;
     client.fetch(query)
