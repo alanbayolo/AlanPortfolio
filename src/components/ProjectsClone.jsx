@@ -140,7 +140,7 @@ const ProjectCardReversed = ({ image, title, content, type, video, skills}) => {
 
 const ProjectsClone = ({selectedLanguage}) => {
   const made = {"en": "Some projects I've built",
-                "fr": "Quelques projets que j'ai fait",
+                "fr": "Mes projets",
               "es": "Algunos projectos que he realizado"};
   const [sectionTitle, setSectionTitle] = useState([]);
   const [projectObjects, setProjectObjects] = useState([]);
