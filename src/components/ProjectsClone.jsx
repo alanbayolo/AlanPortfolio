@@ -3,7 +3,6 @@ import styles, {layout} from "../style";
 import { projects } from "../constants";
 import { useRef, useState, useEffect } from "react";
 import {urlFor, client} from '../client';
-import MuxPlayer from '@mux/mux-player-react'
 import {suspend} from 'suspend-react'
 
 const DocumentWithImage = ({}) => {
@@ -11,9 +10,13 @@ const DocumentWithImage = ({}) => {
 }
 
 const VideoPlayer = ({size, source}) => {
-  return(size == 'mobile' ? 
+  {/*return(size == 'mobile' ? 
   <MuxPlayer className="md:invisible rounded-[20px] w-full" playbackId={source} /> :
-  <MuxPlayer className="invisible md:visible rounded-[20px] leftShadow" playbackId={source} />);
+  <MuxPlayer className="invisible md:visible rounded-[20px] leftShadow" playbackId={source} />);*/}
+  return(size == 'mobile' ? 
+    <iframe id="ytplayer" type="text/html" height="300" className="md:hidden rounded-[20px] w-full" src={source} frameborder="0"></iframe>  :
+    <iframe id="ytplayer" type="text/html" height="300" className="hidden md:inline rounded-[20px] leftShadow w-full aspect-video " src={source} frameborder="0"></iframe>
+  )
 }
 
 const ImageElement = ({size, source}) => {
@@ -22,13 +25,13 @@ const ImageElement = ({size, source}) => {
   <img className="invisible md:visible rounded-[20px] leftShadow" src={urlFor(source)} />);
 }
 
-const Media = ({type, image, playbackId, size}) => {
+const Media = ({type, image, video, size}) => {
   console.log(type);
   switch(type){
     case 'image':
       return(<ImageElement size={size} source={image} />);
     case 'video':
-      return(<suspend><VideoPlayer size={size} source={playbackId} /></suspend>);
+      return(<suspend><VideoPlayer className="bg-amber-400" size={size} source={video} /></suspend>);
     case 'document':
       return(0);
     default:
@@ -37,7 +40,7 @@ const Media = ({type, image, playbackId, size}) => {
 }
 
 {/*const ProjectCard = ({ img, title, content, index, skillTags}) => (*/}
-const ProjectCard = ({ image, title, content, type, playbackId, skills}) => {
+const ProjectCard = ({ image, title, content, type, video, skills}) => {
     const targetRef = useRef(null);
     useEffect(() => {
       const updateMousePosition = ev => {
@@ -57,7 +60,7 @@ const ProjectCard = ({ image, title, content, type, playbackId, skills}) => {
         window.removeEventListener('mousemove', updateMousePosition);
       };
     }, []);
-    let object = {type, playbackId, image};
+    let object = {type, video, image};
     return(
         <div className={styles.cardLayout}>
           <div ref={targetRef} className={`${styles.cardSectionmod} gradientmoving`}>
@@ -86,7 +89,7 @@ const ProjectCard = ({ image, title, content, type, playbackId, skills}) => {
         </div>
 )};
 
-const ProjectCardReversed = ({ image, title, content, type, playbackId, skills}) => {
+const ProjectCardReversed = ({ image, title, content, type, video, skills}) => {
   const targetRef = useRef(null);
     useEffect(() => {
       const updateMousePosition = ev => {
@@ -106,7 +109,7 @@ const ProjectCardReversed = ({ image, title, content, type, playbackId, skills})
         window.removeEventListener('mousemove', updateMousePosition);
       };
     }, []);
-    let object = {type, playbackId, image};
+    let object = {type, video, image};
     return(
   <div className={styles.reversedCardLayout}>
     <div ref={targetRef} className={`${styles.reversedCardSectionmod} gradientmoving`}>
@@ -144,14 +147,14 @@ const ProjectsClone = ({selectedLanguage}) => {
   const [query, setQuery] = useState('*[_type == "projects"] | order(id asc) {'
   +'"title":title.'+selectedLanguage+','
   +'"content":content.'+selectedLanguage+','
-  +'skills,id,image,type,"playbackId": video.asset->playbackId'
+  +'skills,id,image,type,video'
   +'}');
   useEffect(() => {
     setSectionTitle(made[selectedLanguage]);
     setQuery('*[_type == "projects"] | order(id asc) {'
     +'"title":title.'+selectedLanguage+','
     +'"content":content.'+selectedLanguage+','
-    +'skills,id,image,type,"playbackId": video.asset->playbackId'
+    +'skills,id,image,type,video'
     +'}');
     let mounted = true;
     client.fetch(query)
@@ -163,7 +166,7 @@ const ProjectsClone = ({selectedLanguage}) => {
     )
     return () => mounted = false;
   },[selectedLanguage, query]);
-  console.log(projectObjects[0]);
+  console.log(projectObjects[3]);
     return (
         <section id="projects" className={layout.section}>
             <div className={layout.sectionInfo}>
