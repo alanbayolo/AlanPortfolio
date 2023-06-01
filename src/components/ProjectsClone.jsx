@@ -13,9 +13,12 @@ const VideoPlayer = ({size, source}) => {
   {/*return(size == 'mobile' ? 
   <MuxPlayer className="md:invisible rounded-[20px] w-full" playbackId={source} /> :
   <MuxPlayer className="invisible md:visible rounded-[20px] leftShadow" playbackId={source} />);*/}
-  return(size == 'mobile' ? 
-    <iframe id="ytplayer" type="text/html" height="300" className="md:hidden rounded-[20px] w-full" src={source} frameborder="0"></iframe>  :
+  /*return(size == 'mobile' ? 
+    <iframe id="ytplayer" type="text/html" height="150" className="md:hidden rounded-[20px] w-full" src={source} frameborder="0"></iframe>  :
     <iframe id="ytplayer" type="text/html" height="300" className="hidden md:inline rounded-[20px] leftShadow w-full aspect-video " src={source} frameborder="0"></iframe>
+  )*/
+  return(size == 'mobile' ? '' :
+    <iframe id="ytplayer" type="text/html" height="200" className=" rounded-[20px] leftShadow w-full aspect-video " src={source} frameborder="0"></iframe>
   )
 }
 
